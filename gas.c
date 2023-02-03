@@ -10,14 +10,12 @@
 #define TLS2P_MAX_BUFFER 1000
 #endif
 
-char* command(int socket_fd, char* command) {
+char* command(int socket_fd, char* cmd) {
+  int step = 0;
   char* result = malloc(TLS2P_MAX_BUFFER);
 
-  // write
-  write(socket_fd, command, strlen(command));
+  write(socket_fd, cmd, strlen(cmd));
 
-  // read output
-  int step = 0;
   do {
     read(socket_fd, result, TLS2P_MAX_BUFFER);
     step++;
